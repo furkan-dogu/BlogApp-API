@@ -14,3 +14,5 @@ router.route("/:id")
     .put(permissions.isAdmin, category.update)
     .patch(permissions.isAdmin, category.update)
     .delete(permissions.isAdmin, category.delete)
+
+module.exports = router
