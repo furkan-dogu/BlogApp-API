@@ -70,11 +70,6 @@ const UserSchema = new mongoose.Schema(
                 message: props => `${props.value} is not a valid image url!`
             },
         },
-
-        city: {
-            type: String,
-            trim: true,
-        },
         
         bio: {
             type: String,
