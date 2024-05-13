@@ -1,6 +1,7 @@
 "use strict";
 
 const User = require("../models/user")
+const Token = require("../models/token")
 
 module.exports = {
 
@@ -53,15 +54,15 @@ module.exports = {
         req.body.isAdmin = false;
         const data = await User.create(req.body)
         
-        // const tokenData = await Token.create({
-        //     userId: data._id,
-        //     token: passwordEncrypt(data._id + Date.now()),
-        // });
+        const tokenData = await Token.create({
+            userId: data._id,
+            token: passwordEncrypt(data._id + Date.now()),
+        });
         //! Auto Login
 
         res.status(201).send({
             error: false,
-            // token: tokenData.token,
+            token: tokenData.token,
             data,
         });
     },
