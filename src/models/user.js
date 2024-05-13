@@ -54,15 +54,34 @@ const UserSchema = new mongoose.Schema(
             default: true
         },
 
-        isStaff: {
+		isAdmin: {
 			type: Boolean,
 			default: false,
 		},
 
-		isAdmin: {
-			type: Boolean,
-			default: false,
-		}
+        image: {
+            type: String,
+            trim: true,
+            required: [true, "Image field must be required"],
+            validate: {
+                validator: function(img) {
+                    return /(https?:\/\/.*\.(?:png|jpg))/i.test(img);
+                },
+                message: props => `${props.value} is not a valid image url!`
+            },
+        },
+
+        city: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+        
+        bio: {
+            type: String,
+            trim: true,
+            required: true
+        }
     },
     {
         collection: "users",

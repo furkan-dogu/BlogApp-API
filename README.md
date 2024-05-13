@@ -4,4 +4,4 @@ Blog App API
 
 ## ERD
 
-![ERD](./erdBlogAPI.png)
+![ERD](./erd.png)

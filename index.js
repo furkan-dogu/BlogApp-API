@@ -29,6 +29,8 @@ app.use(require('./src/middlewares/authentication'))
 
 app.use(require('./src/middlewares/queryHandler'))
 
+app.use(require("./src/middlewares/requestIp"))
+
 /* ------------------------------------------------------- */
 //! Routes:
 
@@ -39,9 +41,9 @@ app.all('/', (req, res) => {
         error: false,
         message: 'Welcome to BLOG APP API',
         docs: {
-            swagger: "http://127.0.0.1:8000/documents/swagger",
-            redoc: "http://127.0.0.1:8000/documents/redoc",
-            json: "http://127.0.0.1:8000/documents/json",
+            swagger: "/documents/swagger",
+            redoc: "/documents/redoc",
+            json: "/documents/json",
         },
         user: req.user,
     })

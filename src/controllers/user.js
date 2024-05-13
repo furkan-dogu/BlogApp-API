@@ -19,11 +19,13 @@ module.exports = {
             `
         */
 
-        const data = await res.getModelList(User)
+        const customFilters = req.user?.isAdmin ? {} : { _id: req.user._id };
+
+        const data = await res.getModelList(User, customFilters)
 
         res.status(200).send({
             error: false,
-            details: await res.getModelListDetails(User),
+            details: await res.getModelListDetails(User, customFilters),
             data
         })
     },
@@ -41,16 +43,27 @@ module.exports = {
                     "email": "test@site.com",
                     "firstName": "test",
                     "lastName": "test",
+                    "image": "https://wwww......",
+                    "city": "test",
+                    "bio": "test"
                 }
             }
         */
         
+        req.body.isAdmin = false;
         const data = await User.create(req.body)
+
+        //! Auto Login
+        const tokenData = await Token.create({
+            userId: data._id,
+            token: passwordEncrypt(data._id + Date.now()),
+        });
 
         res.status(201).send({
             error: false,
-            data
-        })
+            token: tokenData.token,
+            data,
+        });
     },
 
     read: async (req, res) => {
@@ -59,7 +72,9 @@ module.exports = {
             #swagger.summary = "Get Single User"
         */
 
-        const data = await User.findOne({ _id: req.params.id })
+        const customFilters = req.user?.isAdmin ? { _id: req.params.id } : { _id: req.user._id };
+
+        const data = await User.findOne(customFilters)
 
         res.status(200).send({
             error: false,
@@ -80,16 +95,21 @@ module.exports = {
                     "email": "test@site.com",
                     "firstName": "test",
                     "lastName": "test",
+                    "image": "https://wwww......",
+                    "city": "test",
+                    "bio": "test"
                 }
             }
         */
 
-        const data = await User.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
+        const customFilters = req.user?.isAdmin ? { _id: req.params.id } : { _id: req.user._id };
+
+        const data = await User.updateOne(customFilters, req.body, { runValidators: true })
 
         res.status(202).send({
             error: false,
             data,
-            newData: await User.findOne({ _id: req.params.id })
+            newData: await User.findOne(customFilters)
         })
     },
 
@@ -99,11 +119,17 @@ module.exports = {
             #swagger.summary = "Delete User"
         */
 
-        const data = await User.deleteOne({  _id: req.params.id })
-
-        res.status(data.deletedCount ? 204 : 404).send({
-            error: !data.deletedCount,
-            data
-        })
+        if (req.params.id != req.user._id) {
+            const data = await User.deleteOne({ _id: req.params.id });
+        
+            res.status(data.deletedCount ? 204 : 404).send({
+                error: !data.deletedCount,
+                data,
+            });
+        } else {
+            //! Admin cannot delete themselves.
+            res.errorStatusCode = 403;
+            throw new Error("You can not remove your account.");
+        }
     }
 }
