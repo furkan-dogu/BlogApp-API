@@ -1,8 +1,6 @@
 "use strict"
 
-require('dotenv').config()
-const HOST = process.env?.HOST || '127.0.0.1'
-const PORT = process.env?.PORT || 8000
+const HOST = "https://blog-app-api-iota.vercel.app"
 
 const swaggerAutogen = require('swagger-autogen')()
 const packageJson = require('./package.json')
@@ -16,7 +14,7 @@ const document = {
 		contact: { name: packageJson.author, email: "furkandogu2018@gmail.com" },
 		license: { name: packageJson.license, },
 	},
-	host: `${HOST}:${PORT}`,
+	host: `${HOST}`,
 	basePath: '/',
 	schemes: ['https'],
 	consumes: ["application/json"],

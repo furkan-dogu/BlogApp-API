@@ -39,7 +39,7 @@ const BlogSchema = new mongoose.Schema(
                 },
         },
     
-        published: {
+        isPublish: {
             type: Boolean,
             default: true,
         },
