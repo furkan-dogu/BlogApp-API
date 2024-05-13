@@ -52,16 +52,16 @@ module.exports = {
         
         req.body.isAdmin = false;
         const data = await User.create(req.body)
-
+        
+        // const tokenData = await Token.create({
+        //     userId: data._id,
+        //     token: passwordEncrypt(data._id + Date.now()),
+        // });
         //! Auto Login
-        const tokenData = await Token.create({
-            userId: data._id,
-            token: passwordEncrypt(data._id + Date.now()),
-        });
 
         res.status(201).send({
             error: false,
-            token: tokenData.token,
+            // token: tokenData.token,
             data,
         });
     },
