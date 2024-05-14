@@ -24,7 +24,6 @@ const BlogSchema = new mongoose.Schema(
     
         content: {
             type: String,
-            trim: true,
             required: true,
         },
     
