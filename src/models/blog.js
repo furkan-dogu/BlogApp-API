@@ -30,13 +30,7 @@ const BlogSchema = new mongoose.Schema(
     
         image: {
             type: String,
-                trim: true,
-                validate: {
-                    validator: function (img) {
-                        return /(https?:\/\/.*\.(?:png|jpg))/i.test(img);
-                    },
-                    message: (props) => `${props.value} is not a valid image url!`,
-                },
+            trim: true,       
         },
     
         isPublish: {
