@@ -4,6 +4,8 @@ const { mongoose } = require("../configs/dbConnection")
 
 const passwordEncrypt = require("../helpers/passwordEncrypt")
 
+const validator = require("validator");
+
 const UserSchema = new mongoose.Schema(
     {
         username: {
@@ -59,13 +61,25 @@ const UserSchema = new mongoose.Schema(
 			default: false,
 		},
 
+        // image: {
+        //     type: String,
+        //     trim: true,
+        //     required: [true, "Image field must be required"],
+        //     validate: {
+        //         validator: function(img) {
+        //             return /(https?:\/\/.*\.(?:png|jpg))/i.test(img);
+        //         },
+        //         message: props => `${props.value} is not a valid image url!`
+        //     },
+        // },
+
         image: {
             type: String,
             trim: true,
             required: [true, "Image field must be required"],
             validate: {
                 validator: function(img) {
-                    return /(https?:\/\/.*\.(?:png|jpg))/i.test(img);
+                    return validator.isURL(img);
                 },
                 message: props => `${props.value} is not a valid image url!`
             },
