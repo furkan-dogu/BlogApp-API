@@ -13,6 +13,10 @@ This project is a RESTful API developed using Node.js and Express. The API inter
 - [Endpoints](#endpoints)
 - [Project Skeleton](#project-skeleton)
 
+## Live Demo
+
+[Blog App API](https://blog-app-api-iota.vercel.app/)
+
 ## Technologies Used
 
 - **Node.js**: A JavaScript runtime built on Chrome's V8 JavaScript engine.
@@ -26,6 +30,12 @@ This project is a RESTful API developed using Node.js and Express. The API inter
 - **swagger-autogen**: A tool to automatically generate Swagger/OpenAPI documentation from existing code.
 - **swagger-ui-express**: A middleware for serving the Swagger UI bound to your Swagger/OpenAPI specification.
 - **validator**: A library for string validation and sanitization.
+
+### Documentation
+
+- Swagger UI: [https://blog-app-api-iota.vercel.app/documents/swagger](https://blog-app-api-iota.vercel.app/documents/swagger)
+- Redoc: [https://blog-app-api-iota.vercel.app/documents/redoc](https://blog-app-api-iota.vercel.app/documents/redoc)
+- JSON Documentation: [https://blog-app-api-iota.vercel.app/documents/json](https://blog-app-api-iota.vercel.app/documents/json)
 
 ## Endpoints
 
