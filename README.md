@@ -78,7 +78,7 @@ This project is a RESTful API developed using Node.js and Express. The API inter
 ## Project Skeleton
 
 ```
-Product API 2 (folder) 
+Blog App API (folder) 
 │
 ├── src
 │    ├── configs
