@@ -31,7 +31,7 @@ This project is a RESTful API developed using Node.js and Express. The API inter
 - **swagger-ui-express**: A middleware for serving the Swagger UI bound to your Swagger/OpenAPI specification.
 - **validator**: A library for string validation and sanitization.
 
-### Documentation
+## Documentation
 
 - Swagger UI: [https://blog-app-api-iota.vercel.app/documents/swagger](https://blog-app-api-iota.vercel.app/documents/swagger)
 - Redoc: [https://blog-app-api-iota.vercel.app/documents/redoc](https://blog-app-api-iota.vercel.app/documents/redoc)
