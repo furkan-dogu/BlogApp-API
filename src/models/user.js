@@ -11,14 +11,14 @@ const UserSchema = new mongoose.Schema(
         username: {
             type: String,
             trim: true,
-            // required: true,
+            required: true,
             unique: true
         },
 
         password: {
             type: String,
             trim: true,
-            // required: true,
+            required: true,
             set: (password) => {
                 if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(password)) {
                     return passwordEncrypt(password)
@@ -31,7 +31,7 @@ const UserSchema = new mongoose.Schema(
         email: {
             type: String,
             trim: true,
-            // required: true,
+            required: true,
             unique: true,
             validate: [
                 (email) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email),
@@ -42,13 +42,13 @@ const UserSchema = new mongoose.Schema(
         firstName: {
             type: String,
             trim: true,
-            // required: true,
+            required: true,
         },
 
         lastName: {
             type: String,
             trim: true,
-            // required: true,
+            required: true,
         },
 
         isActive: {
@@ -76,7 +76,7 @@ const UserSchema = new mongoose.Schema(
         image: {
             type: String,
             trim: true,
-            // required: [true, "Image field must be required"],
+            required: [true, "Image field must be required"],
             validate: {
                 validator: function(img) {
                     return validator.isURL(img);
@@ -88,7 +88,7 @@ const UserSchema = new mongoose.Schema(
         bio: {
             type: String,
             trim: true,
-            // required: true
+            required: true
         }
     },
     {
